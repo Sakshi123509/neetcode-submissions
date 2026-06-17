@@ -1,0 +1,25 @@
+class Solution {
+   public:
+    vector<int> productExceptSelf(vector<int>& nums) {
+        int n = nums.size();
+        int zero = 0, prod = 1;
+        vector<int> ans(n, 0);
+        for (auto x : nums) {
+            if (x != 0) {
+                prod *= x;
+            } else {
+                zero++;
+            }
+        }
+        for (int i = 0; i < n; i++) {
+            if (zero == 0) {
+                ans[i] = prod / nums[i];
+            } else if (zero == 1) {
+                if (nums[i] == 0) {
+                    ans[i] = prod;
+                }
+            }
+        }
+        return ans;
+    }
+};
